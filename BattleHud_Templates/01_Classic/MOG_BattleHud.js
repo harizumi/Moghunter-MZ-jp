@@ -6,7 +6,6 @@
  * @target MZ
  * @plugindesc (v1.1) Permite customizar o layout de batalha.
  * @author Moghunter
- * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/BattleHud_Templates/01_Classic/MOG_BattleHud.js
  * @param -> MAIN <<<<<<<<<<<<<<<<<<<<<<<
  * @desc
  * 
@@ -1229,7 +1228,7 @@
  * @target MZ
  * @plugindesc (v1.1) 戦闘のレイアウトをカスタマイズできます。
  * @author Moghunter
- * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/MOG_BattleHud.js
+ * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/BattleHud_Templates/01_Classic/MOG_BattleHud.js
  *
  * @param -> MAIN <<<<<<<<<<<<<<<<<<<<<<<
  * @text -> HUD全般 <<<<<<<<<<<<<<<<<<<<<<<
