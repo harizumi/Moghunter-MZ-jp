@@ -1650,7 +1650,7 @@
  * @param MP Meter Flow Anime
  * @text メーターのフローアニメ有効化
  * @desc 画像はゲージの幅の3倍である必要があります。
- * @default true
+ * @default false
  * @type boolean
  * @on 有効
  * @off 無効
@@ -1658,7 +1658,7 @@
  *
  * @param MP Number Visible
  * @text 値の表示
- * @default false
+ * @default true
  * @type boolean
  * @on 表示
  * @off 非表示
