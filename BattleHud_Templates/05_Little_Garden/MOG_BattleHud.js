@@ -1229,7 +1229,7 @@
  * @target MZ
  * @plugindesc (v1.1) 戦闘のレイアウトをカスタマイズできます。
  * @author Moghunter
- * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/MOG_BattleHud.js
+ * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/BattleHud_Templates/05_Little_Garden/MOG_BattleHud.js
  *
  * @param -> MAIN <<<<<<<<<<<<<<<<<<<<<<<
  * @text -> HUD全般 <<<<<<<<<<<<<<<<<<<<<<<
