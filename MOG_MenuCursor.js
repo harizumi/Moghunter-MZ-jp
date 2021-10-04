@@ -503,6 +503,7 @@
  * @desc
  *
  * @param -> ROTATION ANIMATION
+ * @text -> 回転アニメ
  * @desc
  *
  * @param Rotation Animation
@@ -525,6 +526,7 @@
  * @desc
  *
  * @param -> PARTICLES
+ * @text -> パーティクル
  * @desc
  *
  * @param Particles
@@ -623,7 +625,7 @@
  * @value Right
  *
  * @arg animeSpeed
- * @text アニメーション（速度％）
+ * @text アニメーション速度（％）
  * @desc アニメーションカーソル速度設定。 （30％-> 500％）
  * @type number
  * @min 30
