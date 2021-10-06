@@ -709,6 +709,958 @@
  * (v1.1) - Melhoria no plugin parameter na seleção de arquivos.
  *
  */
+/*:ja
+ * @target MZ
+ * @plugindesc (v1.2.1) タイトル画面に複数のレイヤーを追加します
+ *
+ * @author Moghunter
+ * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/MOG_TitleLayers.js
+ *
+ * @param -> Main <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> 全体 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param Fit Screen Resolution
+ * @text 画面の解像度に自動調整
+ * @desc 画像を画面と同じ解像度に自動調整
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Main <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Screen Movement
+ * @text スクロールアニメ
+ * @desc 画面のスクロールアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Main <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Screen Move Speed
+ * @text 移動速度
+ * @desc 画面の移動速度(大きいほど早い)
+ * @default 1
+ * @type number
+ * @max 9007
+ * @parent -> Main <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Screen Move Duration
+ * @text 方向維持時間
+ * @desc 画面移動の方向維持時間(フレーム量毎に移動方向がランダムに変化)
+ * @default 160
+ * @type number
+ * @max 9007
+ * @parent -> Main <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> タイトル画像 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param Title Text Visible
+ * @text タイトル画像を表示
+ * @desc ゲームタイトル画像を表示
+ * @default true
+ * @type boolean
+ * @on 表示
+ * @off 非表示
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Title Text File Name
+ * @text ファイル名
+ * @desc ファイル名の指定
+ * @default Title
+ * @type file
+ * @dir img/titles2/
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Title Text X-Axis
+ * @text X軸位置
+ * @desc 画像のX軸位置
+ * @default 0
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Title Text Y-Axis
+ * @text Y軸位置
+ * @desc 画像のY軸位置
+ * @default 0
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Title Text Zoom Animation
+ * @text ズーム有効化
+ * @desc ズームアニメーションを有効化
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param Title Text Zoom Value
+ * @text タイトルテキストズーム値
+ * @desc ズーム値の設定
+ * @default 1.50
+ * @parent -> Title Text <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 1 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L1 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer1
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default -2
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default -1
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L1 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 1 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 2 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L2 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer2
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 2
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L2 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 2 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 3 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L3 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer3
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 0
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L3 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 3 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 4 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L4 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default true
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer4
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 3
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L4 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 4 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 5 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L5 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer5
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 1.1
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L5 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @type number
+ * @max 9007
+ * @default 20
+ * @parent -> Layer 5 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 6 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L6 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer6
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 1.3
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L6 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 6 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 7 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L7 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer7
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 1.5
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L7 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 7 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 8 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L8 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer8
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 1.7
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L8 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 8 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 9 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L9 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer9
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 1.9
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L9 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 9 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ * @text -> レイヤー 10 <<<<<<<<<<<<<<<<<<<<<<<
+ * @desc
+ *
+ * @param L10 Visible
+ * @text 有効化
+ * @desc レイヤーの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 File Name
+ * @text ファイル名
+ * @desc レイヤーの使用ファイル名
+ * @default Layer10
+ * @type file
+ * @dir img/titles1/
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 X-axis / Scroll
+ * @text X軸スクロール
+ * @desc レイヤーのX軸スクロール速度。正の値で左、負の値で右
+ * @default 2.1
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Y-axis / Scroll
+ * @text Y軸スクロール
+ * @desc レイヤーのY軸スクロール速度。正の値で下、負の値で上
+ * @default 0
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Blend Mode
+ * @text 合成方法
+ * @desc 合成方法
+ * 0:通常 / 1:加算 / 2:減算
+ * @default 0
+ * @type select
+ * @option 通常
+ * @value 0
+ * @option 加算
+ * @value 1
+ * @option 減算
+ * @value 2
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Transition Time
+ * @text 開始前ウェイト
+ * @desc レイヤーが表示されるまでのウェイト量
+ * @default 0
+ * @type number
+ * @max 9007
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Animated
+ * @text アニメ有効化
+ * @desc フレームアニメーションの有効設定
+ * @default false
+ * @type boolean
+ * @on 有効
+ * @off 無効
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Frames
+ * @text アニメフレーム
+ * @desc アニメーションのフレーム数
+ * @default 4
+ * @type number
+ * @min 2
+ * @max 9007
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @param L10 Animation Speed
+ * @text アニメ速度
+ * @desc フレーム間のウェイト量
+ * @default 20
+ * @type number
+ * @max 9007
+ * @parent -> Layer 10 <<<<<<<<<<<<<<<<<<<<<<<
+ *
+ * @help
+ * 翻訳:
+ * https://fungamemake.com/
+ *
+ * ===========================================================================
+ * +++ MOG - Title Layers (v1.2.1) +++
+ * By Moghunter
+ * https://mogplugins.wordpress.com
+ * ===========================================================================
+ * タイトル画面に複数のレイヤーを追加します。
+ *
+ * ===========================================================================
+ * 必要ファイル
+ * ===========================================================================
+ * 下記フォルダに画像を入れてください。
+ * /img/titles1/
+ * 
+ * タイトル画像は下記に入れてください。
+ * /img/titles2/
+ *
+ * ===========================================================================
+ * アニメーション (フレーム)
+ * ===========================================================================
+ * フレームをアニメーションさせるには、
+ * プラグインパラメータ(アニメ有効化)で設定します。
+ *
+ * フレーム画像のファイル名は次の基準に従ってつけてください。
+ *
+ * FILE_NAME + _ID.png
+ * ※アニメ有効化の場合、プラグインパラメーターのファイル名の指定を
+ * 「テキスト」タブから「FILE_NAME」のみを入力する必要があります。
+ *
+ * 例
+ *
+ * レイヤー1を4フレームでフレームアニメーションさせる場合
+ * Layer1_0.png
+ * Layer1_1.png
+ * Layer1_2.png
+ * Layer1_3.png
+ *
+ * レイヤー2をフレームアニメーションさせない場合
+ * Layer2.png
+ *
+ * ===========================================================================
+ * * 更新履歴
+ * ===========================================================================
+ * (v1.2.1) - タイトル画像の無効化が機能しないのを修正。by Harizumi
+ * (v1.2) - エンコーディングに関連するソート機能を修正しました。
+ * (v1.1) - ファイルを選択するプラグインパラメーターを改善しました。
+ *
+ */
 
 //=============================================================================
 // ** PLUGIN PARAMETERS
@@ -822,21 +1774,24 @@ Scene_Title.prototype.createTitleField3 = function () {
 };
 
 //==============================
-// * create Title Text
+// * create Title Text	*Harizumi fix
 //==============================
 Scene_Title.prototype.createTitleText = function () {
-	var fileName = String(Moghunter.titleText_F);
-	this._titleTextSprite = new Sprite(ImageManager.loadTitle2(fileName));
-	this._titleTextSprite.z = 320;
-	this._titleTextSprite.anchor.x = 0.5;
-	this._titleTextSprite.anchor.y = 0.5;
-	this._titleTextSprite.opacity = 0;
-	this._titleTextSprite.fadeSpeed = 6;
-	if (Moghunter.titleText_Zoom == "true") {
-		this._titleTextSprite.scale.x = Moghunter.titleText_ZoomValue;
-		this._titleTextSprite.fadeSpeed = 3;
-	};
-	this._titleField3.addChild(this._titleTextSprite);
+	if (Moghunter.titleText === "true") {
+
+		var fileName = String(Moghunter.titleText_F);
+		this._titleTextSprite = new Sprite(ImageManager.loadTitle2(fileName));
+		this._titleTextSprite.z = 320;
+		this._titleTextSprite.anchor.x = 0.5;
+		this._titleTextSprite.anchor.y = 0.5;
+		this._titleTextSprite.opacity = 0;
+		this._titleTextSprite.fadeSpeed = 6;
+		if (Moghunter.titleText_Zoom == "true") {
+			this._titleTextSprite.scale.x = Moghunter.titleText_ZoomValue;
+			this._titleTextSprite.fadeSpeed = 3;
+		};
+		this._titleField3.addChild(this._titleTextSprite);
+	}
 };
 
 //==============================
