@@ -550,7 +550,7 @@
  */
 /*:ja
  * @target MZ
- * @plugindesc (v1.1) 画像をアニメーション化できます。
+ * @plugindesc (v1.1) ピクチャをアニメーション化できます。
  * @author Moghunter
  * @url https://raw.githubusercontent.com/harizumi/Moghunter-MZ-jp/main/MOG_PictureEffects.js
  *
