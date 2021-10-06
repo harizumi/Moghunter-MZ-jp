@@ -412,7 +412,7 @@
  * (v1.1) - Melhoria no plugin parameter na seleção de arquivos.
  *
  */
-/*:
+/*:ja
  * @target MZ
  * @plugindesc (v1.3) タイトル画面にパーティクルを追加します。
  * @author Moghunter
